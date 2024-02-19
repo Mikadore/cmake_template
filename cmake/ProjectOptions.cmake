@@ -1,5 +1,5 @@
-include(cmake/SystemLink.cmake)
-include(cmake/LibFuzzer.cmake)
+include(lib/SystemLink.cmake)
+include(lib/LibFuzzer.cmake)
 include(CMakeDependentOption)
 include(CheckCXXCompilerFlag)
 
@@ -91,14 +91,14 @@ endmacro()
 
 macro(myproject_global_options)
   if(myproject_ENABLE_IPO)
-    include(cmake/InterproceduralOptimization.cmake)
+    include(lib/InterproceduralOptimization.cmake)
     myproject_enable_ipo()
   endif()
 
   myproject_supports_sanitizers()
 
   if(myproject_ENABLE_HARDENING AND myproject_ENABLE_GLOBAL_HARDENING)
-    include(cmake/Hardening.cmake)
+    include(lib/Hardening.cmake)
     if(NOT SUPPORTS_UBSAN 
        OR myproject_ENABLE_SANITIZER_UNDEFINED
        OR myproject_ENABLE_SANITIZER_ADDRESS
@@ -115,13 +115,13 @@ endmacro()
 
 macro(myproject_local_options)
   if(PROJECT_IS_TOP_LEVEL)
-    include(cmake/StandardProjectSettings.cmake)
+    include(lib/StandardProjectSettings.cmake)
   endif()
 
   add_library(myproject_warnings INTERFACE)
   add_library(myproject_options INTERFACE)
 
-  include(cmake/CompilerWarnings.cmake)
+  include(lib/CompilerWarnings.cmake)
   myproject_set_project_warnings(
     myproject_warnings
     ${myproject_WARNINGS_AS_ERRORS}
@@ -131,11 +131,11 @@ macro(myproject_local_options)
     "")
 
   if(myproject_ENABLE_USER_LINKER)
-    include(cmake/Linker.cmake)
+    include(lib/Linker.cmake)
     myproject_configure_linker(myproject_options)
   endif()
 
-  include(cmake/Sanitizers.cmake)
+  include(lib/Sanitizers.cmake)
   myproject_enable_sanitizers(
     myproject_options
     ${myproject_ENABLE_SANITIZER_ADDRESS}
@@ -156,11 +156,11 @@ macro(myproject_local_options)
   endif()
 
   if(myproject_ENABLE_CACHE)
-    include(cmake/Cache.cmake)
+    include(lib/Cache.cmake)
     myproject_enable_cache()
   endif()
 
-  include(cmake/StaticAnalyzers.cmake)
+  include(lib/StaticAnalyzers.cmake)
   if(myproject_ENABLE_CLANG_TIDY)
     myproject_enable_clang_tidy(myproject_options ${myproject_WARNINGS_AS_ERRORS})
   endif()
@@ -171,7 +171,7 @@ macro(myproject_local_options)
   endif()
 
   if(myproject_ENABLE_COVERAGE)
-    include(cmake/Tests.cmake)
+    include(lib/Tests.cmake)
     myproject_enable_coverage(myproject_options)
   endif()
 
@@ -184,7 +184,7 @@ macro(myproject_local_options)
   endif()
 
   if(myproject_ENABLE_HARDENING AND NOT myproject_ENABLE_GLOBAL_HARDENING)
-    include(cmake/Hardening.cmake)
+    include(lib/Hardening.cmake)
     if(NOT SUPPORTS_UBSAN 
        OR myproject_ENABLE_SANITIZER_UNDEFINED
        OR myproject_ENABLE_SANITIZER_ADDRESS

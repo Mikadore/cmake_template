@@ -21,7 +21,7 @@ project(
   DESCRIPTION ""
   LANGUAGES CXX C)
 
-include(cmake/PreventInSourceBuilds.cmake)
+include(lib/PreventInSourceBuilds.cmake)
 include(ProjectOptions.cmake)
 
 
@@ -55,7 +55,7 @@ add_library(myproject::myproject_warnings ALIAS myproject_warnings)
 
 
 # Adding the src:
-add_subdirectory(src)
+add_subdirectory(../src)
 
 # Don't even look at tests if we're not top level
 if(NOT PROJECT_IS_TOP_LEVEL)
@@ -95,7 +95,7 @@ set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT intro)
 #   return()
 # endif()
 # 
-# include(cmake/PackageProject.cmake)
+# include(lib/PackageProject.cmake)
 
 # Add other targets that you want installed here, by default we just package the one executable
 # we know we want to ship
