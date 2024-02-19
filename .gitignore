@@ -32,3 +32,7 @@ $RECYCLE.BIN/
 .TemporaryItems
 ehthumbs.db
 Thumbs.db
+
+# I'll worry about CI later, for now "disabling" github actions,
+# for now I just wanna keep the config files stashes for later
+.github.bkp
