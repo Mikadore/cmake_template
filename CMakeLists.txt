@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.28)
 
 # This template attempts to be "fetch_content"-able
 # so that it works well with tools like CPM or other
@@ -54,8 +54,6 @@ add_library(myproject::myproject_warnings ALIAS myproject_warnings)
 #add_library(myproject::myproject_options INTERFACE IMPORTED)
 #add_library(myproject::myproject_warnings INTERFACE IMPORTED)
 
-# configure files based on CMake configuration options
-add_subdirectory(configured_files)
 
 # Adding the src:
 add_subdirectory(src)
