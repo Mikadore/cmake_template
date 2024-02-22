@@ -1,15 +1,18 @@
 [toolchain]
 cxx_compiler = 'clang++'
+c_compiler = 'clang'
 linker = 'mold'
 
 [deps]
 packages = [
     "gh:fmtlib/fmt#9.1.0",
     "gh:catchorg/Catch2@3.3.2",
-    "gh:CLIUtils/CLI11@2.3.2",
-    "gh:ArthurSonzogni/FTXUI@5.0.0",
-    "gh:lefticus/tools#update_build_system",
-    { name="spdlog", version="1.11.0", github_repository="gabime/spdlog", options=["SPDLOG_FMT_EXTERNAL ON"]},
 ]
 
+link_names = [
+    "fmt::fmt"
+]
 
+link_tests = [
+    "Catch2::Catch2WithMain"
+]

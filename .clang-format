@@ -10,7 +10,9 @@ CompactNamespaces: 'false'
 FixNamespaceComments: 'false'
 NamespaceIndentation: All
 PointerAlignment: Left
+UseTab: Always
 IndentWidth: 4
+TabWidth: 4
 AlwaysBreakTemplateDeclarations: 'Yes'
 
 BraceWrapping:

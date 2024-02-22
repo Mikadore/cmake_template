@@ -1,0 +1,16 @@
+module;
+#include <string>
+#include <string_view>
+#include <limits>
+
+export module convert;
+
+import std_imports;
+
+export auto parse_i32(std::string_view num) -> i32 {
+    char* str_end = nullptr;
+    constexpr auto base = 10;
+    auto parsed = std::strtol(num.data(), &str_end, base);
+    util::assert(parsed <= std::numeric_limits<i32>::max(), "exceeded i32");
+    return static_cast<i32>(parsed);
+}
